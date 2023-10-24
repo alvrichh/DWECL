@@ -28,12 +28,12 @@ let resta = (a, b) => a - b;
 let division = (a, b) => a / b;
 let multiplicacion = (a, b) => a * b;
 
-let fin = "Ha pulsado en cancelar...";
+let fin = "Ha pulsado en cancelar..."; // O ha introducido por ej 12abc
 let res = "Hola! ha ocurrido un error.";
 
 
 let n1 = prompt("Introduzca un número:");
-let u = n1*1;
+//let u = n1*1; 
 if (n1 === null /* ||   isNaN(u) */) {
     alert(fin);
 
