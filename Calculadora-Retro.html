@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Álvaro Rodríguez Molina">
+    <title>Calculadora de días según la empresa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container text-center mt-5">
+        <img src="https://www.strattonglobal.es/wp-content/uploads/2022/04/Logo_stratton_horizontal.png" alt="Logo"
+            class="img-fluid">
+    </div>
+    <div class="container">
+        <h1 class="mt-5">Calculadora de días según la empresa</h1>
+
+        <form id="fechaForm" class="mt-3">
+            <div class="form-group">
+                <label for="empresa">Seleccione una empresa:</label>
+                <select id="empresa" name="empresa" class="form-control">
+                    <option value="endesa">Endesa</option>
+                    <option value="iberdrola">Iberdrola</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de inicio:</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="fechaFin">Fecha de fin:</label>
+                <input type="date" id="fechaFin" name="fechaFin" class="form-control" />
+            </div>
+
+            <button type="button" onclick="calcularDias()" class="btn btn-primary">Calcular días</button>
+        </form>
+
+        <div id="resultado" class="mt-4"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function calcularDias() {
+            const empresa = document.getElementById('empresa').value;
+            const fechaInicio = document.getElementById('fechaInicio').value;
+            const fechaFin = document.getElementById('fechaFin').value;
+            const diasObjetivo = (empresa === 'endesa') ? 50 : 77;
+
+            // Calcular días solo si se han ingresado ambas fechas
+            if (fechaInicio && fechaFin) {
+                const diferencia = Math.abs(new Date(fechaFin) - new Date(fechaInicio));
+                const totalDias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+
+                let mensaje, diasRestantes;
+
+                if (totalDias > diasObjetivo) {
+                    mensaje = "NO RETRO ✔️";
+                    diasRestantes = totalDias - diasObjetivo;
+                } else {
+                    mensaje = "CUIDADO, RETRO ❌";
+                    diasRestantes = diasObjetivo - totalDias;
+                }
+
+                document.getElementById('resultado').innerText = `Resultado: ${mensaje}\nDías totales: ${totalDias}\nDías restantes para no retroceder: ${diasRestantes}`;
+            } else {
+                alert('Por favor, ingrese ambas fechas.');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
