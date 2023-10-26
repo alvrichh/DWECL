@@ -31,55 +31,166 @@ By: Álvaro Rodríguez Molina
 let socios = [];
 
 function Socio() {
-    this.nSocio = "";
+    this.numeroSocio = "";
     this.dni = "";
     this.nombre = "";
     this.apellidos = "";
     this.fechaNacimiento = "";
     this.localidad = "";
 }
-function Socio(nSocio, dni, nombre, apellidos, fechaNacimiento, localidad) {
-    this.nSocio = nSocio;
+function Socio(numeroSocio, dni, nombre, apellidos, fechaNacimiento, localidad) {
+    this.numeroSocio = numeroSocio;
     this.dni = dni;
     this.nombre = nombre;
     this.apellidos = apellidos;
     this.fechaNacimiento = fechaNacimiento;
     this.localidad = localidad;
 }
-function darAlta() {
-    alert("Alta de un nuevo socio - Se pedirán todos sus datos.");
-    let a = prompt("Introduce número de Socio: ");
-    let b = prompt("Introduce DNI: ");
-    let c = prompt("Introduce nombre: ");
-    let d = prompt("Introduce apellidos: ");
-    let e = prompt("Introduce fecha de nacimiento: ");
-    let f = prompt("Introduce localidad: ");
-    let alta = new Socio(a, b, c, d, e, f);
-    socios.push(alta);
-}
-function darBajaDni(){
-    let res = prompt("Introduce numero de socio: ");
+// LISTA DE SOCIOS POR DEFECTO 
+socios.push(new Socio("001", "12345678A", "Juan", "Pérez", "1990-05-15", "Sevilla"));
+socios.push(new Socio("002", "87654321B", "María", "González", "2005-02-20", "Madrid"));
+socios.push(new Socio("003", "98765432C", "Pedro", "López", "2003-09-10", "Barcelona"));
+socios.push(new Socio("004", "45678901D", "Ana", "Martínez", "1998-11-03", "Valencia"));
+socios.push(new Socio("005", "56789012E", "Luis", "Sánchez", "2010-07-25", "Málaga"));
 
 
-}
-function darBajaDni(){
-    let res = prompt("Introduce DNI: ");
-
+function altaSocio() {
+    let numeroSocio = prompt("Ingrese el número de socio:");
+    let dni = prompt("Ingrese el DNI:");
+    let nombre = prompt("Ingrese el nombre:");
+    let apellidos = prompt("Ingrese los apellidos:");
+    let fechaNacimiento = prompt("Ingrese la fecha de nacimiento (YYYY-MM-DD):");
+    let localidad = prompt("Ingrese la localidad:");
+    socios.push({ numeroSocio, dni, nombre, apellidos, fechaNacimiento, localidad });
+    alert("Socio dado de alta correctamente.");
 }
 
-function darBaja() {
-    alert("Baja de un socio (por el número de socio o por DNI)");
-    let op = prompt("Dar de baja mediante:\n1 - Número de socio\n2 - DNI") * 1;
-    switch (op) {
-        case 1:
-            darBajaDni();
-            break;
-        case 2:
-            darBajaDni();
-            break;
-        default:
-            alert("Introduce una opción correcta.");
+function bajaSocio() {
+    let option = prompt("Ingrese el número de socio o DNI del socio que desea dar de baja:");
+    let index = -1;
+
+    for (let i = 0; i < socios.length; i++) {
+        if (socios[i].numeroSocio === option || socios[i].dni === option) {
+            index = i;
             break;
         }
-        
+    }
+
+    if (index !== -1) {
+        socios.splice(index, 1);
+        alert("Socio dado de baja correctamente.");
+    } else {
+        alert("Socio no encontrado.");
+    }
 }
+
+function modificarLocalidad() {
+    let numeroSocio = prompt("Ingrese el número de socio del socio cuya localidad desea modificar:");
+    let nuevaLocalidad = prompt("Ingrese la nueva localidad:");
+
+    for (let i = 0; i < socios.length; i++) {
+        if (socios[i].numeroSocio === numeroSocio) {
+            socios[i].localidad = nuevaLocalidad;
+            alert("Localidad modificada correctamente.");
+            return;
+        }
+    }
+    alert("Socio no encontrado.");
+}
+
+function calcularCategoria(fechaNacimiento) {
+    let today = new Date();
+    let birthDate = new Date(fechaNacimiento);
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    if (age >= 19) {
+        return "Senior";
+    } else if (age >= 16) {
+        return "Juvenil";
+    } else if (age >= 14) {
+        return "Cadetes";
+    } else if (age >= 12) {
+        return "Infantil";
+    } else if (age >= 10) {
+        return "Alevín";
+    } else if (age >= 8) {
+        return "Benjamín";
+    } else {
+        return "Menor de 8 años";
+    }
+}
+
+function mostrarSocios() {
+    document.write(`
+    <h2>Lista de Socios</h2>
+    <table border='1'>
+        <tr>
+            <th>Número de Socio</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Localidad</th>
+            <th>Categoría</th>
+        </tr>`);
+
+    for (let socio of socios) {
+        let categoria = calcularCategoria(socio.fechaNacimiento);
+        document.write(
+            "<tr>" +
+            "<td>" + socio.numeroSocio + "</td>" +
+            "<td>" + socio.dni + "</td>" +
+            "<td>" + socio.nombre + "</td>" +
+            "<td>" + socio.apellidos + "</td>" +
+            "<td>" + socio.fechaNacimiento + "</td>" +
+            "<td>" + socio.localidad + "</td>" +
+            "<td>" + categoria + "</td>" +
+            "</tr>"
+        );
+    }
+
+    document.write("</table>");
+}
+function seleccionarOperacion() {
+    let opcion = prompt("Seleccione una operación:\n1. Alta de Socio\n2. Baja de Socio\n3. Modificar Localidad\n4. Mostrar Socios\n5. Buscar Socio por DNI\n6. Buscar por Categoría\n7. Buscar por Localidad");
+    if (opcion === null) {
+        alert("Cancelado");
+    } else {
+        switch (opcion) {
+
+            case "1":
+                altaSocio();
+                seleccionarOperacion();
+                break;
+            case "2":
+                bajaSocio();
+                seleccionarOperacion();
+                break;
+            case "3":
+                modificarLocalidad();
+                seleccionarOperacion();
+                break;
+            case "4":
+                mostrarSocios();
+                break;
+            case "5":
+                buscarPorDNI();
+                seleccionarOperacion();
+                break;
+            case "6":
+                buscarPorCategoria();
+                seleccionarOperacion();
+                break;
+            case "7":
+                buscarPorLocalidad();
+                seleccionarOperacion();
+                break;
+            default:
+                alert("Operación no válida.");
+                seleccionarOperacion();
+        }
+    }
+}
+
+// Llama a esta función para que el usuario seleccione una operación al cargar la página.
+seleccionarOperacion();
