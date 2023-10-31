@@ -46,14 +46,15 @@ function Socio(numeroSocio, dni, nombre, apellidos, fechaNacimiento, localidad) 
     this.apellidos = apellidos;
     this.fechaNacimiento = fechaNacimiento;
     this.localidad = localidad;
+
 }
 
 // Lista de socios por defecto
-socios.push(new Socio("001", "12345678A", "Juan", "Pérez", "1990-05-15", "Sevilla"));
-socios.push(new Socio("002", "87654321B", "María", "González", "2005-02-20", "Madrid"));
-socios.push(new Socio("003", "98765432C", "Pedro", "López", "2003-09-10", "Barcelona"));
-socios.push(new Socio("004", "45678901D", "Ana", "Martínez", "1998-11-03", "Valencia"));
-socios.push(new Socio("005", "56789012E", "Luis", "Sánchez", "2010-07-25", "Málaga"));
+socios.push(new Socio("1", "12345678A", "Juan", "Pérez", "1990-05-15", "Sevilla"));
+socios.push(new Socio("2", "87654321B", "María", "González", "2005-02-20", "Madrid"));
+socios.push(new Socio("3", "98765432C", "Pedro", "López", "2008-09-10", "Barcelona"));
+socios.push(new Socio("4", "45678901D", "Ana", "Martínez", "2010-11-03", "Valencia"));
+socios.push(new Socio("5", "56789012E", "Luis", "Sánchez", "2015-07-25", "Málaga"));
 
 function altaSocio() {
     let numeroSocio = prompt("Ingrese el número de socio:");
@@ -102,19 +103,19 @@ function modificarLocalidad() {
 function calcularCategoria(fechaNacimiento) {
     let today = new Date();
     let birthDate = new Date(fechaNacimiento);
-    let age = today.getFullYear() - birthDate.getFullYear();
+    let anyo = today.getFullYear() - birthDate.getFullYear();
 
-    if (age >= 19) {
+    if (anyo >= 19) {
         return "Senior";
-    } else if (age >= 16) {
+    } else if (anyo >= 16) {
         return "Juvenil";
-    } else if (age >= 14) {
+    } else if (anyo >= 14) {
         return "Cadetes";
-    } else if (age >= 12) {
+    } else if (anyo >= 12) {
         return "Infantil";
-    } else if (age >= 10) {
+    } else if (anyo >= 10) {
         return "Alevín";
-    } else if (age >= 8) {
+    } else if (anyo >= 8) {
         return "Benjamín";
     } else {
         return "Menor de 8 años";
@@ -152,6 +153,38 @@ function mostrarSocios() {
 
     document.write("</table>");
 }
+function mostrarSocioFiltrado(array) {
+    document.write(`
+    <h2>Lista de Socios</h2>
+    <table border='1'>
+        <tr>
+            <th>Número de Socio</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Localidad</th>
+            <th>Categoría</th>
+        </tr>`);
+
+    for (let socio of array) {
+        let categoria = calcularCategoria(socio.fechaNacimiento);
+        document.write(
+            `<tr>
+                <td>${socio.numeroSocio}</td>
+                <td>${socio.dni}</td>
+                <td>${socio.nombre}</td>
+                <td>${socio.apellidos}</td>
+                <td>${socio.fechaNacimiento}</td>
+                <td>${socio.localidad}</td>
+                <td>${categoria}</td>
+            </tr>`
+        );
+    }
+
+    document.write("</table>");
+}
+
 
 function buscarPorDNI() {
     let dniBuscado = prompt("Introduce el DNI del socio que deseas buscar:");
@@ -159,96 +192,50 @@ function buscarPorDNI() {
     let socioEncontrado = socios.find((socio) => socio.dni === dniBuscado);
 
     if (socioEncontrado) {
-        document.write(`
-        <h2>Datos del Socio encontrado</h2>
-        <table border='1'>
-            <tr>
-                <th>Número de Socio</th>
-                <th>DNI</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Localidad</th>
-                <th>Categoría</th>
-            </tr>
-            <tr>
-                <td>${socioEncontrado.numeroSocio}</td>
-                <td>${socioEncontrado.dni}</td>
-                <td>${socioEncontrado.nombre}</td>
-                <td>${socioEncontrado.apellidos}</td>
-                <td>${socioEncontrado.fechaNacimiento}</td>
-                <td>${socioEncontrado.localidad}</td>
-                <td>${calcularCategoria(socioEncontrado.fechaNacimiento)}</td>
-            </tr>
-        </table>`);
+        mostrarSocio(socio);
     } else {
         alert("Socio no encontrado.");
     }
 }
 
 function buscarPorCategoria() {
+
     let categoriaBuscada = prompt("Introduce la categoría (Senior, Juvenil, Cadetes, Infantil, Alevín, Benjamín):");
 
-    let categoriaNacimiento = 0;
+    let edad = [];
+
+    let filtro = socios.filter((socio) => (new Date().getFullYear() - new Date(socio.fechaNacimiento).getFullYear()));
 
     switch (categoriaBuscada.toLowerCase()) {
         case "senior":
-            categoriaNacimiento = 19;
+            mostrarSocioFiltrado(filtro >= 19);
             break;
         case "juvenil":
-            categoriaNacimiento = 16;
+            edad = [16, 17, 18];
+
+            mostrarSocioFiltrado(edad.includes(filtro));
             break;
         case "cadetes":
-            categoriaNacimiento = 14;
+            edad = [14, 15];
+            console.log( mostrarSocioFiltrado(edad.includes(filtro)));
+
+            mostrarSocioFiltrado(edad.includes(filtro));
             break;
         case "infantil":
-            categoriaNacimiento = 12;
+            edad = [12, 13];
+            mostrarSocioFiltrado(edad.includes(filtro));
             break;
         case "alevín":
-            categoriaNacimiento = 10;
+            edad = [10, 11];
+            mostrarSocioFiltrado(edad.includes(filtro));
             break;
         case "benjamín":
-            categoriaNacimiento = 8;
+            edad = [8, 9];
+            mostrarSocioFiltrado(edad.includes(filtro));
             break;
         default:
             alert("Categoría no válida.");
             return;
-    }
-
-    let sociosEncontrados = socios.filter((socio) => {
-        let edad = new Date().getFullYear() - new Date(socio.fechaNacimiento).getFullYear();
-        return edad === categoriaNacimiento;
-    });
-
-    if (sociosEncontrados.length > 0) {
-        document.write(`
-        <h2>Socios de la categoría ${categoriaBuscada}</h2>
-        <table border='1'>
-            <tr>
-                <th>Número de Socio</th>
-                <th>DNI</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Localidad</th>
-                <th>Categoría</th>
-            </tr>`);
-        for (let socio of sociosEncontrados) {
-            document.write(
-                `<tr>
-                    <td>${socio.numeroSocio}</td>
-                    <td>${socio.dni}</td>
-                    <td>${socio.nombre}</td>
-                    <td>${socio.apellidos}</td>
-                    <td>${socio.fechaNacimiento}</td>
-                    <td>${socio.localidad}</td>
-                    <td>${categoriaBuscada}</td>
-                </tr>`
-            );
-        }
-        document.write("</table>");
-    } else {
-        alert("No se encontraron socios en esa categoría.");
     }
 }
 
@@ -257,33 +244,9 @@ function buscarPorLocalidad() {
 
     let sociosEncontrados = socios.filter((socio) => socio.localidad.toLowerCase() === localidadBuscada.toLowerCase());
 
+    console.log(sociosEncontrados);
     if (sociosEncontrados.length > 0) {
-        document.write(`
-        <h2>Socios de la localidad de ${localidadBuscada}</h2>
-        <table border='1'>
-            <tr>
-                <th>Número de Socio</th>
-                <th>DNI</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Localidad</th>
-                <th>Categoría</th>
-            </tr>`);
-        for (let socio of sociosEncontrados) {
-            document.write(
-                `<tr>
-                    <td>${socio.numeroSocio}</td>
-                    <td>${socio.dni}</td>
-                    <td>${socio.nombre}</td>
-                    <td>${socio.apellidos}</td>
-                    <td>${socio.fechaNacimiento}</td>
-                    <td>${socio.localidad}</td>
-                    <td>${calcularCategoria(socio.fechaNacimiento)}</td>
-                </tr>`
-            );
-        }
-        document.write("</table>");
+        mostrarSocioFiltrado(sociosEncontrados);
     } else {
         alert("No se encontraron socios en esa localidad.");
     }
@@ -312,11 +275,9 @@ function seleccionarOperacion() {
                 break;
             case "5":
                 buscarPorDNI();
-                seleccionarOperacion();
                 break;
             case "6":
                 buscarPorCategoria();
-                seleccionarOperacion();
                 break;
             case "7":
                 buscarPorLocalidad();
@@ -328,6 +289,7 @@ function seleccionarOperacion() {
         }
     }
 }
+
 
 // Llama a esta función para que el usuario seleccione una operación al cargar la página.
 seleccionarOperacion();
