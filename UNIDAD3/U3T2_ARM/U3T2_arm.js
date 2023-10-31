@@ -192,7 +192,7 @@ function buscarPorDNI() {
     let socioEncontrado = socios.find((socio) => socio.dni === dniBuscado);
 
     if (socioEncontrado) {
-        mostrarSocio(socio);
+        mostrarSocioFiltrado(socioEncontrado);
     } else {
         alert("Socio no encontrado.");
     }
