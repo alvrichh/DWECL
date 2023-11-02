@@ -198,46 +198,6 @@ function buscarPorDNI() {
     }
 }
 
-function buscarPorCategoria() {
-
-    let categoriaBuscada = prompt("Introduce la categoría (Senior, Juvenil, Cadetes, Infantil, Alevín, Benjamín):");
-
-    let edad = [];
-
-    let filtro = socios.filter((socio) => (new Date().getFullYear() - new Date(socio.fechaNacimiento).getFullYear()));
-
-    switch (categoriaBuscada.toLowerCase()) {
-        case "senior":
-            mostrarSocioFiltrado(filtro >= 19);
-            break;
-        case "juvenil":
-            edad = [16, 17, 18];
-
-            mostrarSocioFiltrado(edad.includes(filtro));
-            break;
-        case "cadetes":
-            edad = [14, 15];
-            console.log( mostrarSocioFiltrado(edad.includes(filtro)));
-
-            mostrarSocioFiltrado(edad.includes(filtro));
-            break;
-        case "infantil":
-            edad = [12, 13];
-            mostrarSocioFiltrado(edad.includes(filtro));
-            break;
-        case "alevín":
-            edad = [10, 11];
-            mostrarSocioFiltrado(edad.includes(filtro));
-            break;
-        case "benjamín":
-            edad = [8, 9];
-            mostrarSocioFiltrado(edad.includes(filtro));
-            break;
-        default:
-            alert("Categoría no válida.");
-            return;
-    }
-}
 
 function buscarPorLocalidad() {
     let localidadBuscada = prompt("Introduce la localidad:");
@@ -249,6 +209,19 @@ function buscarPorLocalidad() {
         mostrarSocioFiltrado(sociosEncontrados);
     } else {
         alert("No se encontraron socios en esa localidad.");
+    }
+}
+
+function buscarPorCategoria() {
+    let categoriaBuscada = prompt("Introduce la categoría (Senior, Juvenil, Cadetes, Infantil, Alevín, Benjamín):");
+    
+    // Filtrar los socios por la categoría buscada
+    let socioEncontrado = socios.filter(socio => calcularCategoria(socio.fechaNacimiento) === categoriaBuscada);
+    
+    if (socioEncontrado.length > 0) {
+        mostrarSocioFiltrado(socioEncontrado);
+    } else {
+        alert(`No se encontraron socios en la categoría ${categoriaBuscada}.`);
     }
 }
 
