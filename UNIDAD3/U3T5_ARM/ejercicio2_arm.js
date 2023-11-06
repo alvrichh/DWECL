@@ -14,8 +14,22 @@ La cadena se recibe mediante un prompt y el resultado se muestra en el html (uti
 By: Álvaro Rodríguez Molina
 */
 
-  // Función para extraer el código postal de la cadena
-  function obtenerCodigoPostal(cadena) {
+// Solicitar la cadena al usuario mediante prompt
+let entrada = prompt("Introduce una cadena en el formato 'nombre:apellidos:telefono:email:codigopostal'");
+
+if (entrada === null || entrada === ""){ // no me lo pide pero se podría hacer una especie de parseador para validar el formato
+    alert("Formato incorrecto");
+}
+/*
+ // Validar el formato de la cadena
+        let patron = /^[^:]+:[^:]+:[^:]+:[^@]+@[^:]+:[0-9]{5}$/;
+        if (!patron.test(entrada)) {
+            alert("Formato incorrecto. Debe tener el formato 'nombre:apellidos:telefono:email:codigopostal'");
+        } else {
+            (*)
+*/
+// Función para extraer el código postal de la cadena
+function obtenerCodigoPostal(cadena) {
     let partes = cadena.split(':');
     return partes[4];
 }
@@ -26,7 +40,7 @@ function obtenerApellidos(cadena) {
     return partes[1];
 }
 
-// Función para extraer el servidor de correo de la cadena
+// Función para extraer el servidor de correo de la cadena (*)
 function obtenerServidorCorreo(cadena) {
     let partes = cadena.split(':');
     let email = partes[3];
@@ -34,13 +48,6 @@ function obtenerServidorCorreo(cadena) {
     return servidor;
 }
 
-// Solicitar la cadena al usuario mediante prompt
-let entrada = prompt("Introduce una cadena en el formato 'nombre:apellidos:telefono:email:codigopostal'");
-
-// Obtener el código postal, apellidos y servidor de correo
-let codigoPostal = obtenerCodigoPostal(entrada);
-let apellidos = obtenerApellidos(entrada);
-let servidorCorreo = obtenerServidorCorreo(entrada);
 
 // Mostrar los resultados en el HTML
 document.write(`<h2>Código Postal: ${codigoPostal}</h2>`);
