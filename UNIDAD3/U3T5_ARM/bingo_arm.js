@@ -16,10 +16,11 @@ El cartón con el que se juega (separado por cada una de las líneas que lo comp
 Los números que van saliendo
 El resultado de la línea que se ha cantado por última vez, o bien, si se ha cantado bingo, o bien, nada si no ha obtenido ningún resultado aún.
     
-    By: Álleto Rodríguez Molina
+    By: Álvaro Rodríguez Molina
  **///
 //
 
+// He añadido algunas cosas comentadas para hacer el juego más divertido.
 let carton = [];
 let drawnNumbers = [];
 let maxDrawnNumbers = 99;
@@ -42,6 +43,10 @@ function comenzar() {
     document.getElementById('drawNumberButton').disabled = false;
     document.getElementById('startButton').disabled = true;
     sacaNumeroNuevo();
+    // document.getElementById('cartonInfo').addEventListener('click', marcarCelda); // cuando pulsas en una celda se pondrá en naranja
+    // Los numeros saldrán cada 2 segundos de manera automática
+     intervalId = setInterval(sacaNumeroNuevo, 2000);
+
 }
 
 // Función para rellenar un cartón de bingo con números aleatorios
@@ -85,6 +90,26 @@ function marcarCeldaEnGris(numero) {
         }
     }
 }
+// Función para marcar la celda al hacer clic en ella
+/*
+El event.target es una propiedad del objeto de evento (event) en JavaScript que hace 
+referencia al elemento HTML en el que ocurrió el evento. Es decir, event.target apunta 
+al elemento que fue el objetivo del evento, en este caso, el elemento en el que se hizo clic.
+*/
+/*
+function marcarCelda(event) {
+    if (event.target.tagName === 'TD') {
+        const cell = event.target;
+        const numero = cell.textContent;
+        if (numero && !cell.classList.contains('drawn')) {
+            cell.classList.toggle('marked'); // Agregar o quitar clase para resaltar o desresaltar
+            if (compruebaBingo(carton, drawnNumbers)) {
+                document.getElementById('lineInfo').innerHTML = "<h1>BINGO!</h1>";
+                finalizarPartida();
+            }
+        }
+    }
+} */
 
 // Función para comprobar si se ha cantado línea
 function compruebaLinea(carton, drawnNumbers) {
@@ -98,7 +123,7 @@ function compruebaLinea(carton, drawnNumbers) {
 
 // Función para comprobar si se ha cantado bingo
 function compruebaBingo(carton, drawnNumbers) {
-    const isBingo = carton.every(linea => linea.every(num => drawnNumbers.includes(num)));
+    const isBingo = carton.every(linea => linea.every(num => drawnNumbers.includes(num))); //every devuelve true si todos los elementos del array cumplen la condición de que se encuentra el numero
 
     // Agrega un console.log para verificar si se canta "bingo"
     if (isBingo) {
