@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Álvaro Rodríguez Molina">
+    <title>Ejercicio 1</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+
+        .drawn {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bingo Game</h1>
+    <button id="startButton">Comenzar Partida</button>
+    <button id="drawNumberButton" disabled>Sacar Número Nuevo</button>
+
+    <p id="gameInfo"></p>
+    <table id="cartonInfo"></table>
+    <p id="drawnNumbersInfo"></p>
+    <p id="lineInfo"></p>
+
+    <script src="bingo.js"></script>
+</body>
+
+</html>
