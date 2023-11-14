@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: start;
-    height: 100vh;
+    height: 450px;
 }
 
 .izq,
@@ -14,9 +14,35 @@
     display: grid;
     justify-content: center;
 }
+
 .centro{
     width: 100%;
     height: 70%;
     border: 10px solid black;
     justify-content: center;
+}
+.cuadrado{
+    height: 75px;
+    width: 150px;
+    margin: 5px;
+    display: inline-block;
+
+}
+#cuadrado1{
+    background-color: black;
+}
+#cuadrado2{
+    background-color: red;
+}
+#cuadrado3{
+    background-color: blue;
+}
+#cuadrado4{
+    background-color: yellow;
+}
+#cuadrado5{
+    background-color: green;
+}
+#cuadrado6{
+    background-color: pink;
 }

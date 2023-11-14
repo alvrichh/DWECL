@@ -2,15 +2,16 @@ let html = document.getElementById("html");
 let bot = document.getElementById("bot");
 let js = document.getElementById("js");
 let centro = document.getElementById("centro");
-
+//---------------ZOOM--------------
 let zoomInButton = document.getElementById("zoomIn");
 let zoomOutButton = document.getElementById("zoomOut");
 let tamanioActual = 100;
 let tamanioMaximo = 300;
 let tamanioMinimo = 5;
+//----------------COLORES--------------
 
 function mostrarImagen(e) {
-    let src = e.target.getAttribute("src");
+    let src = e.target.getAttribute("src"); //el target devuelve el nombre del elemento que roduce el elemento
     centro.setAttribute("src", src);
     tamanioActual = 100;
     aplicarTamanio();
