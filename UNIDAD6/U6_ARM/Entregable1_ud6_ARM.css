@@ -14,13 +14,6 @@
     display: grid;
     justify-content: center;
 }
-.izq img{
-    width: 120px;
-}
-.dch img{
-    width: 120px;
-}
-
 .centro{
     width: 100%;
     height: 70%;
