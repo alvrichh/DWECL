@@ -17,15 +17,18 @@
 
 .centro{
     width: 100%;
-    height: 70%;
+    height: 500px;
     border: 10px solid black;
     justify-content: center;
+    align-items: center;
+    display: flex;
 }
 .cuadrado{
     height: 75px;
     width: 150px;
     margin: 5px;
     display: inline-block;
+    margin-top: 100px;
 
 }
 #cuadrado1{
