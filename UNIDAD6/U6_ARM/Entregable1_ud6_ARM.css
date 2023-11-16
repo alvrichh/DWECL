@@ -1,12 +1,14 @@
 *{
     text-align: center;
+    
 }
 .container {
-    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: start;
     height: 450px;
+    min-width: 1000px;
+
 }
 
 .izq,
@@ -15,7 +17,7 @@
     justify-content: center;
 }
 
-.centro{
+.frame{
     width: 100%;
     height: 500px;
     border: 10px solid black;
@@ -23,29 +25,29 @@
     align-items: center;
     display: flex;
 }
-.cuadrado{
-    height: 75px;
+.colores div{
+   height: 75px;
     width: 150px;
     margin: 5px;
     display: inline-block;
     margin-top: 100px;
 
 }
-#cuadrado1{
+#black{
     background-color: black;
 }
-#cuadrado2{
+#red{
     background-color: red;
 }
-#cuadrado3{
+#blue{
     background-color: blue;
 }
-#cuadrado4{
+#yellow{
     background-color: yellow;
 }
-#cuadrado5{
+#green{
     background-color: green;
 }
-#cuadrado6{
+#pink{
     background-color: pink;
 }
