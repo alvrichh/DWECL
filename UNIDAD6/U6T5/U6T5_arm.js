@@ -1,4 +1,3 @@
-/*
 let celdas = document.querySelectorAll("td, th");
 
 for (const item of celdas) {
@@ -25,11 +24,16 @@ function saliendo(e){
         
     }
 }
-*/
+/*
 
  // ---------Selecciona también columnas-------------
 
 let celdas = document.querySelectorAll("td, th");
+=======
+
+/**
+ * let celdas = document.querySelectorAll("td, th");
+>>>>>>> 697b6c59160ee4ffa7944e9d0a26749af6452d01
 
 for (const item of celdas) {
     item.addEventListener('mouseenter', entrando);
@@ -84,4 +88,4 @@ function saliendo(e) {
     }
 }
 
- 
+ */
