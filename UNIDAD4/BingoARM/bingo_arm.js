@@ -1,21 +1,6 @@
 /**
- * Ejercicio 1 (FUNCIONES DE USUARIO)
-El bingo es un juego que consiste en comprobar números que van saliendo aleatorios de un cartón (que podemos representar como un array bidimensional). Cuando todos los números de una fila han salido, se puede cantar línea. Cuando todos los números de un cartón han salido, se puede cantar bingo. Los cartones de bingo disponen de 15 números, repartidos en 3 líneas de 5 números cada una.
-
-Realiza las siguientes funciones:
-
-Función comenzar, que rellena el cartón con el que se juega, inicia la partida, y se llama por primera vez a la función sacaNumeroNuevo.
-Función rellenarCarton, que rellena un array bidimensional con números aleatorios del 1 al 99 (ambos inclusive), que será con el se juega.
-Función compruebaLinea, que recibe un cartón de bingo (representado por un array bidimensional) y un array unidimensional desordenado, con los números que han ido saliendo. Devuelve el número de línea si se canta línea, -1 en caso contrario.
-Función compruebaBingo, que recibe un cartón de bingo (representado por un array bidimensional) y un array unidimensional desordenado, con los números que han ido saliendo. Devuelve true si se canta bingo, false en caso contrario.
-Función sacaNumeroNuevo, que recibe un array unidimensional con los números que han ido saliendo. Esta función irá “sacando” nuevos números mientras haya disponibles (sacaremos un máximo de 99 números). Sacará números aleatorios que no esté presente en el array unidimensional recibido (los números que han salido ya), y una vez sacado el nuevo número, llamará a las funciones compruebaLinea y compruebaBingo.
-Genera un HTML que contenga dos botones, uno para comenzar la partida, y otro para ir sacando números nuevos. Adicionalmente, se insertará utilizando document.write lo siguiente:
-
-Inicio y fin de la partida
-El cartón con el que se juega (separado por cada una de las líneas que lo componen)
-Los números que van saliendo
-El resultado de la línea que se ha cantado por última vez, o bien, si se ha cantado bingo, o bien, nada si no ha obtenido ningún resultado aún.
-    
+    BINGO!!! 
+    S
     By: Álvaro Rodríguez Molina
  **///
 //
@@ -25,11 +10,13 @@ let carton = [];
 let drawnNumbers = [];
 let maxDrawnNumbers = 99;
 
+//Antes de comenzar el juego ponemos el botón de sacar nuemero nuevo en gris
+document.getElementById('drawNumberButton').style.backgroundColor = "grey";
+
 // Función para obtener un número aleatorio entre 1 y 99
 function getRandomNumber() {
     return Math.floor(Math.random() * 99) + 1;
 }
-
 // Función para comenzar la partida
 function comenzar() {
     /*    carton = [
@@ -42,8 +29,10 @@ function comenzar() {
     // Se podrían pone las variables a 0 en el botón comenzar por si queremos jugar de nuevo
     document.getElementById('drawNumberButton').disabled = false;
     document.getElementById('startButton').disabled = true;
+    document.getElementById('startButton').style.backgroundColor = "grey";
+    document.getElementById('drawNumberButton').style.backgroundColor = ""; //le quitamos el color del estilo para que se aplique el css
+    document.getElementById('text').innerHTML = "Números que han salido:";
     sacaNumeroNuevo();
-    // document.getElementById('cartonInfo').addEventListener('click', marcarCelda); // cuando pulsas en una celda se pondrá en naranja
     // Los numeros saldrán cada 2 segundos de manera automática
      intervalId = setInterval(sacaNumeroNuevo, 2000);
 
@@ -80,7 +69,7 @@ function crearTablaCarton(carton) {
 }
 
 // Función para marcar la celda en verde cuando el número sale
-function marcarCeldaEnGris(numero) {
+function marcarCelda(numero) {
     let table = document.getElementById('cartonInfo');
     for (let i = 0; i < table.rows.length; i++) {
         for (let j = 0; j < table.rows[i].cells.length; j++) {
@@ -90,26 +79,6 @@ function marcarCeldaEnGris(numero) {
         }
     }
 }
-// Función para marcar la celda al hacer clic en ella
-/*
-El event.target es una propiedad del objeto de evento (event) en JavaScript que hace 
-referencia al elemento HTML en el que ocurrió el evento. Es decir, event.target apunta 
-al elemento que fue el objetivo del evento, en este caso, el elemento en el que se hizo clic.
-*/
-/*
-function marcarCelda(event) {
-    if (event.target.tagName === 'TD') {
-        const cell = event.target;
-        const numero = cell.textContent;
-        if (numero && !cell.classList.contains('drawn')) {
-            cell.classList.toggle('marked'); // Agregar o quitar clase para resaltar o desresaltar
-            if (compruebaBingo(carton, drawnNumbers)) {
-                document.getElementById('lineInfo').innerHTML = "<h1>BINGO!</h1>";
-                finalizarPartida();
-            }
-        }
-    }
-} */
 
 // Función para comprobar si se ha cantado línea
 function compruebaLinea(carton, drawnNumbers) {
@@ -139,18 +108,19 @@ function sacaNumeroNuevo() {
         let newNumber;
         do {
             newNumber = getRandomNumber();
+            document.getElementById('drawnNumbersInfo').innerHTML +='<div class= bolitas>' + newNumber + '</div>';
         } while (drawnNumbers.includes(newNumber));
 
-        drawnNumbers.push(newNumber);
+      //  drawnNumbers.push('<div class= bolitas>' + newNumber + '</div>');
         maxDrawnNumbers--;
 
-        marcarCeldaEnGris(newNumber);
+        marcarCelda(newNumber);
 
         let lineInfo = compruebaLinea(carton, drawnNumbers);
         let bingoInfo = compruebaBingo(carton, drawnNumbers);
 
         document.getElementById('gameInfo').innerHTML = "Inicio de la partida";
-        document.getElementById('drawnNumbersInfo').innerHTML = "Números que han salido:<br>" + JSON.stringify(drawnNumbers, null, 4);
+        //document.getElementById('drawnNumbersInfo').innerHTML = drawnNumbers;
 
         console.log("Números que han salido:", drawnNumbers);
         console.log("Es bingo?", bingoInfo);
@@ -165,6 +135,7 @@ function sacaNumeroNuevo() {
         } else {
             document.getElementById('lineInfo').innerHTML = "";
         }
+
     } else {
         document.getElementById('drawNumberButton').disabled = true;
         document.getElementById('lineInfo').innerHTML = "Fin de la partida";
