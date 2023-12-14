@@ -1,0 +1,23 @@
+table {
+    text-align: center;
+    margin: auto;
+    width: 400px;
+    height: 250px;
+
+}
+th,
+td {
+    margin: 100px;
+    border-radius: 100%;
+    background-color: grey;
+    color: white;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.drawn {
+    background-color: rgb(47, 255, 61);
+}
+
+.marked {
+    background-color: orange;
+}

@@ -1,0 +1,67 @@
+.contenedorNumero{
+    border-radius: 100%;
+    background-color: gray;
+    color: white;
+    font-size: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 5px;
+}
+
+.numeroAcertado{
+    background-color: #0CDF0C;
+}
+
+.contenedorFlex{
+    display: flex;
+    flex-direction: column;
+}
+
+.filaBingo{
+    display: flex;
+    flex-direction: row;
+}
+
+.filaBotones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+i{
+    margin: 2px;
+}
+
+.escondido{
+    display: none;
+    margin: 0;
+}
+
+
+.filaBotones button {
+    background-color: #2ecc71; /* Color de fondo para los botones */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+.filaBotones button:hover {
+    background-color: #27ae60; /* Color de fondo al pasar el ratón sobre el botón */
+}
