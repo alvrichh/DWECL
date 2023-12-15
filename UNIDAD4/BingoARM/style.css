@@ -19,14 +19,13 @@ td {
     color: white;
     font-size: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    transition: background-color 0.3s ease, transform 0.5s ease;; /* Transición suave del color de fondo */
+    transition: background-color 0.3s ease, transform 0.7s ease;; /* Transición suave del color de fondo */
 
 }
 
 .drawn {
     background-color: #2ECC71;
 }
-
 
 td:hover{
     background-color: orange;
