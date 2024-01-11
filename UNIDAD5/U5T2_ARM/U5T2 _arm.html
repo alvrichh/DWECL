@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Álvaro Rodríguez">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulario de grabaciones</title>
+</head>
+
+<body>
+    <h2>Formulario de grabaciones</h2>
+    <form id="myForm" method="get" action="https://google.com">
+        <label for="titulo">Título de la grabación:</label>
+        <input type="text" id="titulo" name="titulo" placeholder="Introduce el título de la grabación">
+
+        <label for="tipo">Tipo de grabación:</label>
+        <select id="tipo" name="tipo">
+            <option value="falso_directo" selected>Falso directo</option>
+            <option value="directo">Directo</option>
+            <option value="cebo">Cebo</option>
+            <option value="cola">Cola</option>
+        </select>
+
+        <label for="codigo">Código de grabación:</label>
+        <select id="codigo" name="codigo">
+            <option value="BC_67">BC_67</option>
+            <option value="FR_56">FR_56</option>
+            <option value="DE_33">DE_33</option>
+            <option value="DF_77">DF_77</option>
+        </select>
+
+        <label for="password">Contraseña de la periodista:</label>
+        <input type="password" id="password" name="password" placeholder="Introduce tu password">
+
+        <input type="reset" value="Limpiar">
+        <input type="submit" value="Enviar">
+    </form>
+    A@password-*
+
+    <div id="errorDiv"></div>
+
+    <label for="intentos">Número de intentos:</label>
+    <input type="text" id="intentos" name="intentos" readonly>
+
+    <button id="resetButton">Reiniciar contador</button>
+
+    <script src="U4T3_arm.js"></script>
+</body>
+
+</html>
