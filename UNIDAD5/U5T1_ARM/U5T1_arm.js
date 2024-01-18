@@ -1,7 +1,7 @@
 function setCookies() {
   const expirationDate = new Date("December 31, 2024 23:59:59");
 
-  document.cookie = `usuario=alvaro; expires=${expirationDate.toUTCString()}`;
+  document.cookie = `usuario=alvrich; expires=${expirationDate.toUTCString()}`;
   document.cookie = `edad=22; expires=${expirationDate.toUTCString()}`;
   document.cookie = `curso=DAW2; expires=${expirationDate.toUTCString()}`;
 }
