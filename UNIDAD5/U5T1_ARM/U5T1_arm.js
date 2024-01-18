@@ -7,12 +7,13 @@ function setCookies() {
 }
 
 function getCookie(name) {
-  const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+  const cookies = document.cookie.split(';');
 
   for (const cookie of cookies) {
     const [cookieName, cookieValue] = cookie.split('=');
+    const trimmedName = cookieName.trim();
 
-    if (cookieName === name) {
+    if (trimmedName === name) {
       return cookieValue;
     }
   }
