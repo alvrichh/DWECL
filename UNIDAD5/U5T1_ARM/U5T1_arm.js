@@ -1,27 +1,33 @@
+function setCookies() {
+  const expirationDate = new Date("December 31, 2024 23:59:59");
+
+  document.cookie = `usuario=alvaro; expires=${expirationDate.toUTCString()}`;
+  document.cookie = `edad=22; expires=${expirationDate.toUTCString()}`;
+  document.cookie = `curso=DAW2; expires=${expirationDate.toUTCString()}`;
+}
+
 function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-      var c = ca[i];
-      while (c.charAt(0)==' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split('=');
+
+    if (cookieName === name) {
+      return cookieValue;
     }
-    return null;
   }
-  function createCookie(name, value, days) {
-    var expires;
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toGMTString();
-    }
-    else {
-      expires = ""; 
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-  }
-  
-  createCookie("usuario", "tu nombre", 365);
-  createCookie("edad", "tu edad", 365);
-  createCookie("curso", "daw2", 365);
-  
+
+  return null;
+}
+
+// Llamamos a setCookies para establecer las cookies
+setCookies();
+
+// Probamos la función getCookie para obtener los valores
+const nombreUsuario = getCookie('usuario');
+const edadUsuario = getCookie('edad');
+const cursoUsuario = getCookie('curso');
+
+console.log('Nombre de usuario:', nombreUsuario);
+console.log('Edad de usuario:', edadUsuario);
+console.log('Curso del usuario:', cursoUsuario);

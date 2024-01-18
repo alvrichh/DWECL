@@ -1,9 +1,12 @@
 document.forms["myForm"].addEventListener("submit", function (event) {
-    if (!validateForm()) {
-        event.preventDefault(); // Evita la acción por defecto de envío del formulario si la validación falla
+    event.preventDefault(); // Evita la acción por defecto de envío del formulario
+
+    if (validateForm()) {
+        document.forms["myForm"].submit(); // Si la validación pasa, puedes enviar el formulario programáticamente
     }
 });
-function validateForm() {
+
+function validateForm() {  // debo considerar que en formularios grandes es mas óptimo utilizar un bucle
     let titulo = document.forms["myForm"]["titulo"].value;
     let tipo = document.forms["myForm"]["tipo"].value;
     let codigo = document.forms["myForm"]["codigo"].value;
@@ -23,7 +26,6 @@ function validateForm() {
 
     if (errorDiv.innerHTML != "") {
         errorDiv.className = "error";
-        incrementCounter();
         return false;
     } else {
         errorDiv.className = "success";
@@ -32,28 +34,58 @@ function validateForm() {
     }
 }
 
-function incrementCounter() {
-    let counter = getCounter();
-    counter++;
-    setCounter(counter);
-    document.getElementById("intentos").value = counter;
+// comprobar si el navegador es compatible
+if (typeof Storage !== "undefined") {
+    console.log("funciona")
+} else {
+    console.log("esto no va")
 }
+// Guardar
+localStorage.setItem("Alixar", "DAW2");
 
-function getCounter() {
-    let counter = parseInt(document.cookie.replace(/(?:(?:^|.*;\s*)counter\s*\=\s*([^;]*).*$)|^.*$/, "$1")) || 0;
-    return counter;
-}
+localStorage.getItem("Alixar");
 
-function setCounter(counter) {
-    let expiryDate = new Date("2024-12-31T20:00:00");
-    document.cookie = "counter=" + counter + "; expires=" + expiryDate.toUTCString() + "; path=/";
-}
+// Obtener el valor actual de la cookie "intentos" al cargar la página
+let intentos = parseInt(getCookie("intentos")) || 0;
+updateIntentosField(intentos);
 
-document.getElementById("resetButton").addEventListener("click", function () {
-    setCounter(0);
-    document.getElementById("intentos").value = 0;
+// Evento de envío del formulario
+document.forms["myForm"].addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (validateForm()) {
+        document.forms["myForm"].submit();
+    } else {
+        // Incrementar el contador de intentos y actualizar el campo de texto
+        intentos++;
+        updateIntentosField(intentos);
+
+        // Almacenar el nuevo valor en la cookie con fecha de caducidad
+        let expirationDate = new Date("2024-12-31T20:00:00");
+        document.cookie = `intentos=${intentos}; expires=${expirationDate.toUTCString()}`;
+    }
 });
 
-window.onload = function () {
-    document.getElementById("intentos").value = getCounter();
-};
+// Evento para reiniciar el contador de intentos al hacer clic en el botón
+document.getElementById("resetIntentos").addEventListener("click", function () {
+    intentos = 0;
+    updateIntentosField(intentos);
+
+    // Reiniciar la cookie con fecha de caducidad
+    let expirationDate = new Date("2024-12-31T20:00:00");
+    document.cookie = `intentos=${intentos}; expires=${expirationDate.toUTCString()}`;
+});
+function updateIntentosField(value) {
+    document.getElementById("intentos").value = value;
+}
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+            return cookie.substring(name.length + 1);
+        }
+    }
+    return null;
+}
