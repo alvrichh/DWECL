@@ -1,2 +1,2 @@
-document.cookie="user= alvrich";
+document.cookie="user=alvrich";
 alert(document.cookie)

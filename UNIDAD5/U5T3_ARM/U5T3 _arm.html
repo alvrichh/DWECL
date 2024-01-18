@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Álvaro Rodríguez">
+    <link rel="stylesheet" href="style.css">
+    <title>Almacenamiento Web</title>
+
+</head>
+
+<body>
+    <h1>Ejemplo de Almacenamiento local con HTML5</h1>
+    <div class="form">
+        <label for="tipoAlmacenamiento">Tipo de Almacenamiento:</label>
+        <select id="tipoAlmacenamiento">
+            <option value="localStorage">LOCAL</option>
+            <option value="sessionStorage">SESION</option>
+        </select>
+    </div>
+    <div class="form">
+        <label for="clave">Clave:</label>
+        <input type="text" id="clave">
+    </div>
+    <div class="form">
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor">
+    </div>
+    <br>
+
+    <button type="button">Guardar</button>
+    <button type="button">Eliminar</button>
+    <button type="button">Refrescar</button>
+    <button type="button">Comprobar compatibilidad del navegador</button>
+
+    <h2>Resultados</h2>
+    <table>
+        <td>
+            <h3>localStorage</h3>
+            <textarea id="localStorageData" readonly></textarea>
+        </td>
+        <td>
+            <h3>sessionStorage</h3>
+            <textarea id="sessionStorageData" readonly></textarea>
+        </td>
+    </table>
+    <script src="U5T3 _arm.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+body {
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.form{
+    display: block;
+}
