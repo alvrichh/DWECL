@@ -113,6 +113,6 @@ function comprobar() {
         console.log('¡Compatibilidad verificada con éxito!');
     } else {
         alert('¡Este navegador no soporta almacenamiento local y de sesión!');
-        console.error('¡Incompatibilidad detectada! ¿Qué año es, 1995?');
+        console.error('¡Incompatibilidad detectada! vaya pasté');
     }
 };
