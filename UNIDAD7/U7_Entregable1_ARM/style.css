@@ -1,0 +1,59 @@
+#tablaResultados {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: azure;
+    margin: auto;
+}
+
+#tablaResultados th,
+#tablaResultados td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border: 1px solid black;
+    color: red;
+}
+
+#tablaResultados th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#tablaResultados tr:hover {
+    background-color: rgb(223, 227, 231);
+}
+
+#tablaResultados td:hover {
+    background-color: rgb(178, 179, 181);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    text-align: center;
+    background-color: black;
+}
+
+button {
+    margin: 10px 20px 20px ;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #38863c;
+}
+
+#cargando {
+    display: none;
+    font-size: 20px;
+    margin-top: 10px;
+    color: white;
+}
