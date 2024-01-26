@@ -48,21 +48,21 @@ function mostrarDatosEnTabla(data) {
 }
 /**
  * function mostrarDatosEnTabla(data) {
-    const filas = data.split('\n');
+    let filas = data.split('\n');
 
-    const tablaExistente = document.getElementById("tablaResultados");
+    let tablaExistente = document.getElementById("tablaResultados");
     if (tablaExistente) {
         tablaExistente.remove();
     }
 
-    const nuevaTabla = document.createElement("table");
+    let nuevaTabla = document.createElement("table");
     nuevaTabla.id = "tablaResultados";
 
-    const encabezado = document.createElement("tr");
-    const titulos = ["Grupo", "Asignatura", "Semanas Restantes"];
+    let encabezado = document.createElement("tr");
+    let titulos = ["Grupo", "Asignatura", "Semanas Restantes"];
 
     titulos.forEach(titulo => {
-        const th = document.createElement("th");
+        let th = document.createElement("th");
         th.appendChild(document.createTextNode(titulo));
         encabezado.appendChild(th);
     });
@@ -70,15 +70,15 @@ function mostrarDatosEnTabla(data) {
     nuevaTabla.appendChild(encabezado);
 
     filas.forEach(filaDatos => {
-        const datos = filaDatos.split(';').map(item => item.split(':').map(el => el.trim()));
+        let datos = filaDatos.split(';').map(item => item.split(':').map(el => el.trim()));
 
         if (datos.length === 3) {
-            const fila = document.createElement("tr");
+            let fila = document.createElement("tr");
 
             datos.forEach(par => {
-                const [key, value] = par;
-                const td = document.createElement("td");
-                const texto = document.createTextNode(value);
+                let [key, value] = par;
+                let td = document.createElement("td");
+                let texto = document.createTextNode(value);
                 td.appendChild(texto);
                 fila.appendChild(td);
             });
