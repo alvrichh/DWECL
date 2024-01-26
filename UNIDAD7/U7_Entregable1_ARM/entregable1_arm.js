@@ -27,20 +27,20 @@ document.getElementById("obtenerDatos").addEventListener("click", () => {
 });
 
 function mostrarDatosEnTabla(data) {
-    const filas = data.split('\n');
+    let filas = data.split('\n');
 
-    const tablaExistente = document.getElementById("tablaResultados");
+    let tablaExistente = document.getElementById("tablaResultados");
     if (tablaExistente) tablaExistente.remove();
 
-    const nuevaTabla = document.createElement("table");
+    let nuevaTabla = document.createElement("table");
     nuevaTabla.id = "tablaResultados";
 
-    const titulos = ["Grupo", "Asignatura", "Semanas Restantes"];
+    let titulos = ["Grupo", "Asignatura", "Semanas Restantes"];
 
     nuevaTabla.innerHTML = `<tr>${titulos.map(titulo => `<th>${titulo}</th>`).join('')}</tr>`;
 
     filas.forEach(fila => {
-        const datos = fila.split(';').map(par => par.split(':').map(el => el.trim()));
+        let datos = fila.split(';').map(par => par.split(':').map(el => el.trim()));
         if (datos.length === 3) nuevaTabla.innerHTML += `<tr>${datos.map(([key, value]) => `<td>${value}</td>`).join('')}</tr>`;
     });
 
