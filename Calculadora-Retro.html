@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label for="fechaFin">Fecha de fin:</label>
-                <input type="date" id="fechaFin" name="fechaFin" class="form-control" />
+                <input type="date" id="fechaFin" name="fechaFin" class="form-control" readonly />
             </div>
 
             <button type="button" onclick="calcularDias()" class="btn btn-primary">Calcular días</button>
@@ -47,6 +47,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script>
+        // Establecer la fecha de fin como la fecha actual al cargar la página
+        document.getElementById('fechaFin').valueAsDate = new Date();
+
         function calcularDias() {
             const empresa = document.getElementById('empresa').value;
             const fechaInicio = document.getElementById('fechaInicio').value;
