@@ -1,3 +1,5 @@
+document.getElementById('verificarBtn').addEventListener('click', verificarCiudad);
+
 function verificarCiudad() {
     let ciudadInput = document.getElementById('localidad');
     let resultadoElement = document.getElementById('resultado');
