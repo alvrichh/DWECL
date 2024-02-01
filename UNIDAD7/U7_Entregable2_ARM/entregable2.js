@@ -1,4 +1,4 @@
-document.getElementById('verificarBtn').addEventListener('click', verificarCiudad);
+document.getElementById("verificar").addEventListener("click", verificarCiudad);
 
 function verificarCiudad() {
     let ciudadInput = document.getElementById('localidad');
