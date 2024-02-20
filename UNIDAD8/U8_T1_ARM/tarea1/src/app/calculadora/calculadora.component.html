@@ -1,0 +1,13 @@
+<div>
+    <h2>Calculadora simple</h2>
+    <label for="numero1">Número 1: </label>
+    <input type="number" value="Sumar" [(ngModel)]="num1">
+    <br>
+    <label for="numero2">Número 2: </label>
+    <input type="number" [(ngModel)]="num2">
+    <br>
+    <button (click)="suma()">Sumar</button>
+
+    <p *ngIf="res !== undefined">Resultado: {{ res }}</p>
+
+</div>
