@@ -1,13 +1,16 @@
-<div>
-    <h2>Calculadora simple</h2>
-    <label for="numero1">Número 1: </label>
-    <input type="number" value="Sumar" [(ngModel)]="num1">
-    <br>
-    <label for="numero2">Número 2: </label>
-    <input type="number" [(ngModel)]="num2">
-    <br>
-    <button (click)="suma()">Sumar</button>
-
+<mat-card>
+    <mat-card-title>Calculadora</mat-card-title>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Número 1" [(ngModel)]="num1">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Número 2" [(ngModel)]="num2">
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="suma()">Sumar</button>
+    <button mat-raised-button color="primary" (click)="resta()">Restar</button>
+    <button mat-raised-button color="primary" (click)="multiplica()">Multiplicar</button>
+  
     <p *ngIf="res !== undefined">Resultado: {{ res }}</p>
-
-</div>
+  </mat-card>
+  
