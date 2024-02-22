@@ -1,6 +1,6 @@
-<div>
-    <button (click)="sumar()">Sumar</button>
-    <button (click)="restar()">Restar</button>
-    <button (click)="multiplicar()">Multiplicar</button>
-    <p *ngIf="resultado !== undefined">Resultado: {{ resultado }}</p>
-</div>
+<button mat-raised-button color="primary" (click)="sumar()">Sumar</button>
+<button mat-raised-button color="primary" (click)="restar()">Restar</button>
+<button mat-raised-button color="primary" (click)="multiplicar()">Multiplicar</button>
+<br>
+aqui estaría el p
+<p *ngIf="resultado !== undefined">Resultado: {{ resultado }} </p>

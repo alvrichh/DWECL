@@ -1,0 +1,19 @@
+button {
+    margin: auto;
+    margin-top: 10px;
+    width: 50%;
+  }
+  button:hover{
+    background-color: dodgerblue;
+  }
+  input{
+    margin: auto;
+    background-color: burlywood;
+    padding: 10px;
+    width: calc(100% - 20px);
+    border: none;
+}
+  p{
+    color: darkblue;
+    background-color: yellow;
+  }

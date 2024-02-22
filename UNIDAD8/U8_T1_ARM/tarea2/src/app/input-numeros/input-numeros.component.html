@@ -1,8 +1,6 @@
-<div>
-    <label for="numero1">Número 1: </label>
-    <input type="number" id="numero1" [(ngModel)]="num1">
-    <br>
-    <label for="numero2">Número 2: </label>
-    <input type="number" id="numero2" [(ngModel)]="num2">
-  </div>
-  
+<mat-card>
+  <mat-card-title>Calculadora</mat-card-title>
+    <input matInput type="number" placeholder="Número 1" [(ngModel)]="num1">
+    <input matInput type="number" placeholder="Número 2" [(ngModel)]="num2">
+  <app-operaciones [numero1]="num1" [numero2]="num2"></app-operaciones>
+</mat-card>

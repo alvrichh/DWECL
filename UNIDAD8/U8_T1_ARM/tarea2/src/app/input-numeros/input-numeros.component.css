@@ -1,0 +1,19 @@
+mat-card {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #212121; 
+  }
+  
+  mat-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+  }
+  
+  mat-form-field {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
