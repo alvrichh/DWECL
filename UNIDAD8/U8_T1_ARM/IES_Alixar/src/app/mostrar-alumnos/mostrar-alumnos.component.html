@@ -1,7 +1,4 @@
-<!-- mostrar-alumnos.component.html -->
-
-<div *ngFor="let alumno of listaDeAlumnos">
-    {{ alumno.nombre }} - {{ alumno.edad }} años - {{ alumno.curso }}
-  </div>
-  
- 
+<div class="table" *ngFor="let alumno of listaDeAlumnos">
+  {{ alumno.nombre }} - {{ alumno.edad }} años - {{ alumno.curso }}
+</div>
+<app-botones-colores></app-botones-colores>
