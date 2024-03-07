@@ -2,14 +2,12 @@ export class Alumno{
     nombre:string ='';
     edad:number =0;
     curso:string = '';
-    //color: string ='';
 
 
     constructor(nombre: string, edad: number, curso: string) {
         this.nombre = nombre;
         this.edad = edad;
         this.curso = curso;
-       // this.color = color;
 
       }
 }

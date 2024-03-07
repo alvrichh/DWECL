@@ -17,14 +17,12 @@ import { BotonesColoresComponent } from '../botones-colores/botones-colores.comp
 export class MostrarAlumnosComponent {
   listaDeAlumnos: Alumno[];
 
+  color:string ="red";
+
   constructor(public baseDeDatos: BaseDeDatos) {
     this.listaDeAlumnos = baseDeDatos.alumnos;
+
+
   }
-/*
-  cambiarColor(color: string) {
-    // Cambiar el color de todos los alumnos
-    this.listaDeAlumnos.forEach(alumno => {
-      alumno.color = color;
-    });*/
-  //}
+
 }

@@ -1,4 +1,4 @@
-<div class="table" *ngFor="let alumno of listaDeAlumnos">
+<div [style.color]="color" class="table" *ngFor="let alumno of listaDeAlumnos">
   {{ alumno.nombre }} - {{ alumno.edad }} años - {{ alumno.curso }}
 </div>
 <app-botones-colores></app-botones-colores>

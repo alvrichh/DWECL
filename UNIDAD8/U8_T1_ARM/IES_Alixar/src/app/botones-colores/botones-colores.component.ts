@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MostrarAlumnosComponent } from '../mostrar-alumnos/mostrar-alumnos.component';
 
 @Component({
@@ -10,4 +10,15 @@ import { MostrarAlumnosComponent } from '../mostrar-alumnos/mostrar-alumnos.comp
 })
 export class BotonesColoresComponent {
 
+  @Output() colorSeleccionado : EventEmitter<string> = new EventEmitter<string>();
+
+  Rojo() { 
+    this.colorSeleccionado.emit("red");
+  }
+  Verde() {
+    this.colorSeleccionado.emit("green");
+  }
+  Azul() { 
+    this.colorSeleccionado.emit("blue");
+   }
 }
