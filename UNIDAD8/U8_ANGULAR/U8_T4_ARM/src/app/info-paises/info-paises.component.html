@@ -1,0 +1,29 @@
+<div class="container">
+    <br>
+    <h1>Países por Continente</h1>
+<br>
+    <div class="mb-3"> <!-- Añade un margen inferior -->
+      <select class="form-select" [(ngModel)]="continenteSeleccionado">
+        <option value="europe">Europa</option>
+        <option value="africa">África</option>
+        <option value="americas">Américas</option>
+        <option value="asia">Asia</option>
+        <option value="oceania">Oceanía</option>
+      </select>
+      <br>
+      <button class="btn btn-primary" (click)="mostrarinfo()">Obtener Paises</button>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4" *ngFor="let pais of paises">
+        <div class="card mb-3"> <!-- Añade un margen inferior -->
+          <div class="card-body">
+            <h5 class="card-title">{{ pais.nombre }}</h5>
+            <p class="card-text">Capital: {{ pais.capital }}</p>
+            <img [src]="pais.flags?.png" alt="{{ pais.nombre }} Flag" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
