@@ -1,5 +1,7 @@
 # JavaScript
 Este repositorio de GitHub alberga un conjunto de archivos y recursos relacionados con un emocionante proyecto de desarrollo en JavaScript. El proyecto se enfoca en la creación de aplicaciones web de alto rendimiento y utiliza las mejores prácticas y las últimas tecnologías en el mundo del desarrollo web.
+![image](https://github.com/user-attachments/assets/95586768-8faa-4892-9f82-979f6534e92e)
+
 
 # Proyecto JavaScript Avanzado
 
